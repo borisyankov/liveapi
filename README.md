@@ -1,2 +1,2 @@
 # liveapi
-Lightweight specification for JSON Websocket APIs
+Light-weight specification and implementation for JSON Websocket APIs
