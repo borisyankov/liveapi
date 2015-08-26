@@ -1,0 +1,88 @@
+---
+layout: default
+---
+
+<h2>Request Format</h2>
+
+<p>Think of it as a remote function call. Zero or one responses expected.</p>
+
+{% highlight javascript %}
+{
+    "cmd": "request_type",
+    "params": {
+        ...
+    },
+    "id": "unique_request_id"
+}
+{% endhighlight %}
+
+<h2>Success Response</h2>
+
+<p>Equivalent to a function result.</p>
+
+{% highlight javascript %}
+{
+    "return": "response_type",
+    "result": {
+        ...
+    },
+    "reply_to": "request_id"
+}
+{% endhighlight %}
+
+
+<p>'reply_to' is used to determine which request it corresponds to.</p>
+
+<h2>Error Response</h2>
+
+<p>Sent back from server when error occurs. Can be sent in addition or instead of the response.</p>
+
+{% highlight javascript %}
+{
+    "return": "error",
+    "error": {
+        "code": "invalid",
+        "msg": "Error message here"
+    },
+    "reply_to": "request_id"
+}
+{% endhighlight %}
+
+<h2>Subscribe To Event</h2>
+
+<p>Subscription to 'events'. These can be tick stream, portfolio or any other events.</p>
+
+{% highlight javascript %}
+{
+    "subscribe": "event_name",
+    "params": {
+        ...
+    }
+}
+{% endhighlight %}
+
+<h3>Event Response</h3>
+
+<p>Happens when the user had subscribed to the event. Server determines how otften it will be called</p>
+
+{% highlight javascript %}
+{
+    "event": "event_name",
+    "return": {
+        ...
+    }
+}
+{% endhighlight %}
+
+<h2>Unsubscribe Request</h2>
+
+<p>Stop 'events' from server.</p>
+
+{% highlight javascript %}
+{
+    "unsubscribe": "event_name",
+    "params": {
+        ...
+    }
+}
+{% endhighlight %}
